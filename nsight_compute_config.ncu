@@ -1,0 +1,65 @@
+# Nsight Compute Configuration for CUDA Matrix Multiplication Profiling
+# This file contains profiling settings optimized for matrix multiplication kernels
+
+# Basic profiling configuration
+--kernel-regex "matrix_mult.*"  # Profile all matrix multiplication kernels
+--launch-skip 1                  # Skip first launch (warmup)
+--launch-count 10               # Profile 10 launches for better statistics
+
+# Memory analysis
+--metrics gpu__time_duration,gpu__time_active,gpu__time_elapsed
+--metrics sm__throughput.avg.pct_of_peak_sustained_elapsed
+--metrics sm__warps_active.avg.pct_of_peak_theoretical_warps
+--metrics sm__warps_eligible.avg.pct_of_peak_theoretical_warps
+--metrics sm__warps_issued.avg.pct_of_peak_theoretical_warps
+
+# Memory throughput and efficiency
+--metrics l1tex__throughput.avg.pct_of_peak_sustained_elapsed
+--metrics l1tex__data_pipe_lsu_wavefronts_mem_lg_op.avg.pct_of_peak_sustained_elapsed
+--metrics l1tex__data_pipe_lsu_wavefronts_mem_sh_op.avg.pct_of_peak_sustained_elapsed
+--metrics l1tex__t_sectors_pipe_lsu_mem_global_op_ld.sum
+--metrics l1tex__t_sectors_pipe_lsu_mem_global_op_st.sum
+--metrics l1tex__t_sectors_pipe_lsu_mem_shared_op_ld.sum
+--metrics l1tex__t_sectors_pipe_lsu_mem_shared_op_st.sum
+
+# Shared memory analysis
+--metrics l1tex__data_pipe_lsu_wavefronts_mem_shared_op_ld.avg.pct_of_peak_sustained_elapsed
+--metrics l1tex__data_pipe_lsu_wavefronts_mem_shared_op_st.avg.pct_of_peak_sustained_elapsed
+--metrics l1tex__t_sectors_pipe_lsu_mem_shared_op_ld.sum
+--metrics l1tex__t_sectors_pipe_lsu_mem_shared_op_st.sum
+
+# Compute utilization
+--metrics sm__pipe_alu_cycles_active.avg.pct_of_peak_sustained_elapsed
+--metrics sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_elapsed
+--metrics sm__pipe_tensor_cycles_active.avg.pct_of_peak_sustained_elapsed
+
+# Occupancy analysis
+--metrics sm__warps_active.avg.pct_of_peak_theoretical_warps
+--metrics sm__warps_eligible.avg.pct_of_peak_theoretical_warps
+--metrics sm__warps_issued.avg.pct_of_peak_theoretical_warps
+--metrics sm__warps_launched.avg.pct_of_peak_theoretical_warps
+
+# Memory bandwidth
+--metrics dram__throughput.avg.pct_of_peak_sustained_elapsed
+--metrics lts__throughput.avg.pct_of_peak_sustained_elapsed
+
+# Cache efficiency
+--metrics l1tex__t_sectors_pipe_lsu_mem_global_op_ld_lookup_hit.sum
+--metrics l1tex__t_sectors_pipe_lsu_mem_global_op_ld_lookup_miss.sum
+--metrics l1tex__t_sectors_pipe_lsu_mem_global_op_st_lookup_hit.sum
+--metrics l1tex__t_sectors_pipe_lsu_mem_global_op_st_lookup_miss.sum
+
+# Instruction analysis
+--metrics smsp__inst_executed.avg.per_cycle_elapsed
+--metrics smsp__inst_executed_op_fp16.avg.per_cycle_elapsed
+--metrics smsp__inst_executed_op_fp32.avg.per_cycle_elapsed
+--metrics smsp__inst_executed_op_fp64.avg.per_cycle_elapsed
+
+# Branch efficiency
+--metrics smsp__warps_launched.sum
+--metrics smsp__warps_active.avg.pct_of_peak_theoretical_warps
+
+# Output format
+--csv
+--page details
+--page source
