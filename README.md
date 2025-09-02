@@ -236,3 +236,7 @@ This project is open source and available under the MIT License.
 - [CUDA Best Practices Guide](https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/)
 - [Nsight Compute Documentation](https://docs.nvidia.com/nsight-compute/)
 - [Matrix Multiplication Optimization Techniques](https://developer.nvidia.com/blog/cuda-pro-tip-occupancy-api-simplifies-launch-configuration/)
+
+## AI Disclosure
+- This README was generated with the help of AI 
+
